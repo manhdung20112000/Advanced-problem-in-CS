@@ -28,7 +28,7 @@
 \usepackage{hyperref}
 \usepackage[english]{babel}
 \usepackage{csquotes}
-\usepackage[backend=bibtex]{biblatex}
+\usepackage[sorting=none,backend=bibtex]{biblatex}
 \addbibresource{cite.bib}
 
 
@@ -53,22 +53,22 @@
 \begin{document}
 
 \title{ \normalsize \textsc{PROJECT REPORT\\
-Course: Advanced problems in Computer Science}
-		\\ [5.0cm]
-		\HRule{0.5pt} \\
-		\LARGE \textbf{\uppercase{OBJECT DETECTION IN DEEP LEARNING}} 
-		\\ [0.25 cm]
-		\large {And their applications in real life}
-		\HRule{2pt} \\ [0.5 cm]
-		\normalsize  \vspace*{5\baselineskip}}
+    Course: Advanced problems in Computer Science}
+\\ [5.0cm]
+\HRule{0.5pt} \\
+\LARGE \textbf{\uppercase{OBJECT DETECTION IN DEEP LEARNING}}
+\\ [0.25 cm]
+\large {And their applications in real life}
+\HRule{2pt} \\ [0.5 cm]
+\normalsize  \vspace*{5\baselineskip}}
 
-\date{ 
+\date{
     \large{Academic year: 2020 - 2021}
 }
 
 \author{
-        Dung Nguyen Manh \\
-    }
+    Dung Nguyen Manh \\
+}
 
 \newpage
 \maketitle
@@ -86,7 +86,7 @@ Course: Advanced problems in Computer Science}
 %-------------------------------------------------------------------------------
 
 \begin{abstract}
-What did I do in a nutshell?     
+    What did I do in a nutshell?
 \end{abstract}
 
 %-------------------------------------------------------------------------------
@@ -94,31 +94,104 @@ What did I do in a nutshell?
 %-------------------------------------------------------------------------------
 
 \chapter{Introduction}
-Something to say before dig in the academical knowledge LoL!
+For decades, people are dreaming about create a machine with the characteristics
+of human intelligence, those can think and act like human. Nowadays, thanks to the
+advancements of artificial intelligence and computational power, Computer Vision
+technology has taken a big evolution and significant role in enabling digital
+transformation across different industry. Computer Vision technology is
+transformating the busniess world with its capability to understand the content
+of digital images and videos. Accouding to Tractica\cite{tracitareport}, global
+market for computer vision will increase from \$6.6 billion in 2015 to \$48.6
+billion annually by 2022, which re-confirm the huge impact of Computer Vision fields
+in this world. With the concept of capturing, processing, analyzing digital images
+and videos, Computer Vision allows computer to see and understand the real world and
+generates actionable insights as per designed algorithms. In this chapter, I will cover
+the definition of Computer Vision and the most basic concept of its subfields,
+especial Object Detection.
 
 \newpage
 
 \section{Introduction to Computer Vision}
-What is Computer Vision? \\
+Computer Vision (CV) is a subfields of Aritficial Intelligence (AI), emerged in the
+late 60’s and developed almost parallely with the AI field. 
+The term "Computer Vision" have 2 components, where "Computer" refers an electronic 
+machine capable of performing various processes, calculation, and operations from 
+sets of instructions directed by software or hardware, and the term "Vision" refers
+to visual perception throught sight where can be understand as the ability to "identify"
+the objects located inside the environments. 
+
+The concept of Computer Vision is based on teaching the machine how to “see” and 
+interpret important information contained in images and videos. Computer Vision 
+systems then use this translated data, 
+using the knownledge provided by human beings, in order to improve the result of 
+decision making process. Turning raw image data into higher-level concepts, that 
+computers can interpret and act upon them is the principal goal of computer vision 
+technology. 
+
+\subsection{A brief history of Computer Vision}
+Computer Vision is not new technology; the first experiments with Computer Vision 
+started in the summer of 1966, Seymour Papert and Marvin Minsky started a project titled 
+"Summer Vision Project"\cite{summervision}, where they built a system that can analyse 
+a scence and identify objects in that scence. At that time, computer vision were relatively
+simple and required a lot of work from human operators who had to provide data samples 
+for analyse manually. It's hard to provide a decent amount of data, plus, the computational
+power that day was not enough, therefore the error margin in this project was pretty high. 
+
+At first, low-level tasks such as color segmentation or edge detection, etc, were already 
+applied in the early day of the fields and formed the foundations of many mordern computer
+vision this day. However, by the 80's, the scientific world generally agreed that the 
+problem was not as trivial as they initially thought it was. Scientists quickly came to 
+realise that tasks that are easily or even unconsciously done by humans are very difficult 
+for a computer and the opposite. 
+
+In late 70's and early 90's, knowns as "AI Winters", is a period of reduced funding and 
+interest in artificial intelligence research\cite{aiwinter}. A principle, commonly known 
+as Moravec’s paradox\cite{agrawal2010study}, was first formulated by the computer scientist 
+Hans Moravec. Basically, it highlights that is much easier to implement specialized computers 
+to mimic adult human experts (Deep Blue beat Kasparov at chess\cite{deepblue}) than building a 
+machine with skills of 1-year old children with abilities to learn how to move around, 
+recognize faces and voice or pay attention to interesting things. 
+
+\begin{displayquote}[Moravec's paradox\cite{agrawal2010study}]
+    Easy problems are hard and require enormous computation resources, 
+    hard problems are easy and require very little computation. 
+\end{displayquote}
+
+The "winter" of connectionist research came to an end in the middle 1980s, 
+when the work of John Hopfield, David Rumelhart and others revived large scale interest 
+in neural networks. The mid 90's, the field has seen an increase in interest with the 
+widespread use of machine learning and the first industrial applications. Scientists in Machine Learning started to 
+shifts from a knowledge-driven approach to a data-driven approach, and many technical machine 
+learning arrived such as Support-vector machines (SVM); Recurrent neural networks (RNN); etc.\cite{708428,medsker2001recurrent}
+In the past decade, the introduction of deep learning has reinforced the interest in the field, 
+intensifying the talk about an “AI spring”.
+
+\subsection{Challenge in Computer Vision}
+Compare Computer Vision with Human Vision. Hardware (sensor, eyes) \& 
+Software (algorithm, perception). \\
 A brief history about CV? \\
 Its role in modern world? Give some evidences of how CV is changing the world? \\
 What is the potential and the challenge in Computer Vision field? \\
-Technical evolution in Computer Vision and the foundations of the evolution? 
+Technical evolution in Computer Vision and the foundations of the evolution?
 
 \section{What is Object Detection}
 A statement about Object Detection role in daily problem.\\
 What is Object detection? A concept of Object detection tasks?
 
-\subsection{Image Classification}
-A brief explanation about Image Classification. \\
-An approaching methods? 
+\subsection{Object Classification}
+A brief explanation about Object Classification. \\
+An approaching methods?
 
-\subsection{Object Localization}
+\subsection{Object Identification}
 What is Object localization? \\
 An approaching methods?
 
+\subsection{Object Tracking}
+A brief explanation about Object tracking. \\
+An approaching methods?
+
 \subsection{Object Detection's current achivements}
-Some current achivements? 
+Some current achivements?
 
 %-------------------------------------------------------------------------------
 % BEFORE DEEP LEARNING
