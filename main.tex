@@ -93,7 +93,7 @@ advancements of artificial intelligence and computational power, Computer Vision
 technology has taken a big evolution and significant role in enabling digital
 transformation across different industry. Computer Vision technology is
 transformating the busniess world with its capability to understand the content
-of digital images and videos. Accouding to Tractica\cite{tracitareport}, global
+of digital images and videos. Accouding to Tractica \cite{tracitareport}, global
 market for computer vision will increase from \$6.6 billion in 2015 to \$48.6
 billion annually by 2022, which re-confirm the huge impact of Computer Vision fields
 to this world. With the concept of capturing, processing, analyzing digital images
@@ -135,7 +135,7 @@ technology.
 \subsection{A brief history of Computer Vision}
 Computer Vision is not new technology; the first experiments with Computer Vision 
 started in the summer of 1966, Seymour Papert and Marvin Minsky started a project titled 
-"Summer Vision Project"\cite{summervision}, where they built a system that can analyse 
+"Summer Vision Project" \cite{summervision}, where they built a system that can analyse 
 a scence and identify objects in that scence. At that time, computer vision were relatively
 simple and required a lot of work from human operators who had to provide data samples 
 for analyse manually. It's hard to provide a decent amount of data, plus, the computational
@@ -156,14 +156,14 @@ realise that tasks that are easily or even unconsciously done by humans are very
 for a computer and the opposite. 
 
 In late 70's and early 90's, knowns as "AI Winters", is a period of reduced funding and 
-interest in artificial intelligence research\cite{aiwinter}. A principle, commonly known 
-as Moravec’s paradox\cite{agrawal2010study}, was first formulated by the computer scientist 
+interest in artificial intelligence research \cite{aiwinter}. A principle, commonly known 
+as Moravec’s paradox \cite{agrawal2010study}, was first formulated by the computer scientist 
 Hans Moravec. Basically, it highlights that is much easier to implement specialized computers 
-to mimic adult human experts (Deep Blue beat Kasparov at chess\cite{deepblue}) than building a 
+to mimic adult human experts (Deep Blue beat Kasparov at chess \cite{deepblue}) than building a 
 machine with skills of 1-year old children with abilities to learn how to move around, 
 recognize faces and voice or pay attention to interesting things. 
 
-\begin{displayquote}[Moravec's paradox\cite{agrawal2010study}]
+\begin{displayquote}[Moravec's paradox \cite{agrawal2010study}]
     Easy problems are hard and require enormous computation resources, 
     hard problems are easy and require very little computation. 
 \end{displayquote}
@@ -201,12 +201,14 @@ Each pixel’s brightness is represented by a single 8-bit number,
 whose range is from 0 (black) to 255 (white). Nowadays, most of the images have 3
 color channels which is RGB, then each channels no more represents grayscale intensity
 but the related color intensity, eg: channels Red represents the intensity of color red 
-in image. \\
+in image. 
+
 Because of the way computer or machine seeing the world, Computer Vision have to face 
 many challenges. Therefore, it's not easy to answer what is the challenges in Computer 
 Vision, these difficulties might vary from each to other fields in Computer Vision. 
 The mose comman challenges in CV tasks such as objects under different viewpoints, 
-illuminations, and intraclass variations, etc. \\
+illuminations, and intraclass variations, etc. 
+
 Imagine we are building a Computer Vision system has ability to classify whether 
 the objects in image are cat or not. That a look at a few example in figure \ref{fig:challenge} 
 which can show us what type of difficulties that real life image 
@@ -229,13 +231,15 @@ applications. It takes part in many intelligence system that are able to underst
 their task through a process of interpreting the visual world by camera, videos, images, etc.
 As one of the fundamental problems of computer vision, Object Detection form the basic 
 of many other computer vision task, such as instance segmentation, image captioning, 
-object tracking, etc. \\
+object tracking, etc. 
+
 Object detection (OD) is a computer technology related image processing that deals 
 with detecting instances of semantic objects of a certain class (such as humans, animals, or cars) 
 in digital images and videos. 
 The objective of object detection is to develop computational models and techniques that provide 
 one of the most basic pieces of information needed by computer vision applications:
-\emph{What objects are where?} \\
+\emph{What objects are where?} 
+
 While Object detection is a subfiled of computer vision, OD also face the most basic 
 difficulties in computer vision that we covered in section \ref{sec:challenges}. However, 
 object detection include (but not limited to) the following aspects: object rotation and
@@ -250,7 +254,7 @@ in object detection from 1998 to 2018 has increasing rapidly. \cite{zou2019objec
     \includegraphics[width=0.75\textwidth]{images/number_of_publication.png}
     \caption{The increasing number of publications in object detection from 1998 to 2018}
     \label{fig:publication}
-    \source{Object Detection in 20 Years: A survey\cite{zou2019object}}
+    \source{Object Detection in 20 Years: A survey \cite{zou2019object}}
 \end{figure}
 
 %-------------------------------------------------------------------------------
@@ -280,19 +284,94 @@ and "deep learning based detection" (after 2014).
         Retina-Net \cite{lin2017focal}.
     }
     \label{fig:roadmap}
-    \source{Object Detection in 20 Years: A survey\cite{zou2019object}}
+    \source{Object Detection in 20 Years: A survey \cite{zou2019object}}
 \end{figure}
 
 \subsection{Traditional Object Detectors}
 \label{sec:tradional}
 Turn back the clock 20 years, we would witness "the wisdom of cold weapon era". Most 
 of the early object detection algorithms were built based on handcrafted features. 
+Their performance easily stagnates by constructing complex ensembles which 
+combine multiple low-level image features with high-level context 
+from object detectors and scene classifiers. 
+
+\subsubsection{Viola Jones Detectors}
+\label{sec:viola}
+Developed by Paul Viola and Michael Jones back in 2001 \cite{viola2001rapid}, 
+the Viola-Jones Object Detection Framework can quickly and accurately 
+detect objects in images and works particularly well with the human face.
+The algorithm combines the concepts of Haar-like Features, Integral Images, 
+the AdaBoost Algorithm, and the Cascade Classifier in order to create a system for 
+object detection that is fast and accurate.
+
+The VJ detector follows a most straight forward way of detection, i.e, sliding windows:
+to go through all possible locations and scales in an image to see if any window might 
+contains a human face. Althought it seems to be a very simple process, the calculation 
+behind it was far beyond the computer's power of its time.
+The VJ detector has dramatically improved its detection speed by incorporating three 
+important techniques: "integral image", "feature selection", and "detection cascades".
+While the VJ detector was tens or even hundreds of times faster than any other algorithms in its 
+time under comparable detection accuracy, but in the scope of 
+this report, I will not get deeper in detail of how VJ detector work.
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/vj_detector_process.png}
+    \caption{Integral image and how Haar exacting features}
+    \label{fig:haar}
+    \source{Socret Lee (towardsdatascience.com)}
+\end{figure}
 
 \subsubsection{Histogram of Oriented Gradients (HOG) Detector}
 \label{sec:hog}
+Release by N. Dalal and B. Triggs in 2005 \cite{dalal2005histograms}, the HOG methods,
+Histogram of Oriented Gradients, were considered as an important improvement of the 
+scale-invariant feature transform and shape contexts of its time. The core of HOG 
+algorithm is image gradient vector. It's a metric for every individual pixel, containing
+the pixel color changes in both x-axis and y-axis which represent the dirrection of colors 
+changing from one extreme to the other. 
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{images/vector_gradient.png}
+    \caption{Visuallization of image gradient vector}
+    \label{fig:gradient}
+    \source{learnopencv.com}
+\end{figure}
+
+The HOG descriptor is designed to compute the gradient vector of every pixel 
+on a dense grid of uniformly spaced cells. Then it searchs for all possible regions 
+that counld contains object in images and use overlapping local contrast normalization 
+(on block) for improving accuracy. To able to detect objects of different size, the 
+HOG detector rescales the input image for multiple times while keeping the size of 
+detecting window unchanged.
 
 \subsubsection{Deformable Part-based Model (DPM)}
 \label{sec:dpm}
+DPM was originally proposed by P.Felzenswalb in 2008 \cite{felzenszwalb2008discriminatively}
+as an extension of the HOG detector. The PASCAL Visual Object Classes Challenge 2007, 
+2008 and 2009 pronounce DPM as the winners, therefore, it can be called as the peak 
+of the traditional object detection methods. 
+
+Followings the detection philosophy of "divide and conquer", where the training can 
+be simply considered as the learning of a proper way of decomposing an object. 
+and the inference can be considered as an ensemble of detections on different object 
+parts. For example, when detecting a "bicycle" can be considered of detecting wheels, 
+body. This was named "star-model" published by P. Felzenszwalb \cite{felzenszwalb2008discriminatively}.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=1\textwidth]{images/dpm.png}
+    \caption{Root-filter and part-filters of a car in DPM algorithm}
+    \label{fig:dpm}
+    \source{CS231b Stanford}
+\end{figure}
+
+A typical DPM detector consists of a root-filter and a number of part-filters. Instead 
+of manually specifying the configurations of the part filters. Instead of manually 
+specifying the configurations of the part filters (e.g., size, location), a weakly supervised 
+learning method is developed in DPM where all configurations of part filters can be 
+learned automatically.
+
+
 
 \subsection{Deep Learning based Detection}
 \label{sec:deep_learning}
@@ -329,6 +408,6 @@ of the early object detection algorithms were built based on handcrafted feature
 % REFERENCES
 %-------------------------------------------------------------------------------
 \newpage
-\printbibliography[title=References]
+\printbibliography
 
 \end{document}
