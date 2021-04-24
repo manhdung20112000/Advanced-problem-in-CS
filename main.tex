@@ -11,7 +11,7 @@
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[12pt]{report}
+\documentclass[12pt]{article}
 \usepackage[a4paper]{geometry}
 \usepackage[myheadings]{fullpage}
 \usepackage{fancyhdr}
@@ -31,7 +31,7 @@
 \usepackage[sorting=none,backend=bibtex]{biblatex}
 \addbibresource{cite.bib}
 
-
+\newcommand{\source}[1]{\caption*{Source: \emph{#1}} }
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 \onehalfspacing
 \setcounter{tocdepth}{5}
@@ -78,6 +78,7 @@
 \sectionfont{\scshape}
 %-------------------------------------------------------------------------------
 
+\newpage
 \tableofcontents
 \newpage
 
@@ -86,14 +87,6 @@
 %-------------------------------------------------------------------------------
 
 \begin{abstract}
-    What did I do in a nutshell?
-\end{abstract}
-
-%-------------------------------------------------------------------------------
-% INTRODUCTION
-%-------------------------------------------------------------------------------
-
-\chapter{Introduction}
 For decades, people are dreaming about create a machine with the characteristics
 of human intelligence, those can think and act like human. Nowadays, thanks to the
 advancements of artificial intelligence and computational power, Computer Vision
@@ -103,15 +96,18 @@ transformating the busniess world with its capability to understand the content
 of digital images and videos. Accouding to Tractica\cite{tracitareport}, global
 market for computer vision will increase from \$6.6 billion in 2015 to \$48.6
 billion annually by 2022, which re-confirm the huge impact of Computer Vision fields
-in this world. With the concept of capturing, processing, analyzing digital images
+to this world. With the concept of capturing, processing, analyzing digital images
 and videos, Computer Vision allows computer to see and understand the real world and
-generates actionable insights as per designed algorithms. In this chapter, I will cover
+generates actionable insights as per designed algorithms. In this report, I will cover
 the definition of Computer Vision and the most basic concept of its subfields,
 especial Object Detection.
+\end{abstract}
 
-\newpage
+%-------------------------------------------------------------------------------
+% INTRODUCTION
+%-------------------------------------------------------------------------------
 
-\section{Introduction to Computer Vision}
+\section{INTRODUCTION TO COMPUTER VISION}
 Computer Vision (CV) is a subfields of Aritficial Intelligence (AI), emerged in the
 late 60’s and developed almost parallely with the AI field. 
 The term "Computer Vision" have 2 components, where "Computer" refers an electronic 
@@ -119,6 +115,14 @@ machine capable of performing various processes, calculation, and operations fro
 sets of instructions directed by software or hardware, and the term "Vision" refers
 to visual perception throught sight where can be understand as the ability to "identify"
 the objects located inside the environments. 
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{images/digital-eyes.jpg}
+    \caption{CV agent is an AI that can interpret and understand the visual world}
+    \label{fig:computer_vision}
+    \source{dreamstime.com}
+\end{figure}
 
 The concept of Computer Vision is based on teaching the machine how to “see” and 
 interpret important information contained in images and videos. Computer Vision 
@@ -136,6 +140,13 @@ a scence and identify objects in that scence. At that time, computer vision were
 simple and required a lot of work from human operators who had to provide data samples 
 for analyse manually. It's hard to provide a decent amount of data, plus, the computational
 power that day was not enough, therefore the error margin in this project was pretty high. 
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/minsky_papert.jpg}
+    \caption{Seymour Papert and Marvin Minsky in The History of AI at AIWS.net}
+    \label{fig:papert_minsky}
+\end{figure}
 
 At first, low-level tasks such as color segmentation or edge detection, etc, were already 
 applied in the early day of the fields and formed the foundations of many mordern computer
@@ -167,67 +178,157 @@ In the past decade, the introduction of deep learning has reinforced the interes
 intensifying the talk about an “AI spring”.
 
 \subsection{Challenge in Computer Vision}
-Compare Computer Vision with Human Vision. Hardware (sensor, eyes) \& 
-Software (algorithm, perception). \\
-A brief history about CV? \\
-Its role in modern world? Give some evidences of how CV is changing the world? \\
-What is the potential and the challenge in Computer Vision field? \\
-Technical evolution in Computer Vision and the foundations of the evolution?
+\label{sec:challenges}
+The main purpose in development Computer Vision is not to imitate just human sight, but actually
+to imitate the human visual perception. When parallelize the human visual system with 
+the computer vision system, we can say both consist of sensor and interpreter. If our eyes
+are our sensor that help us senses the light, then camera in many devices are machine 'eyes'.
+The biggest challenge comes up with Computer Vision is not in machine eyes but the algorithm
+teach them how to observate the world. 
 
-\section{What is Object Detection}
-A statement about Object Detection role in daily problem.\\
-What is Object detection? A concept of Object detection tasks?
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/how-computer-interpret-image.jpg}
+    \caption{How computer interpret image}
+    \label{fig:computer_image}
+    \source{Openframeworks}
+\end{figure}
 
-\subsection{Object Classification}
-A brief explanation about Object Classification. \\
-An approaching methods?
+A computer sees an image as series of pixels with it transforms to and array. 
+The figure \ref{fig:computer_image} is a simple illustration of the grayscale image 
+buffer which stores our image of Abraham Lincoln. 
+Each pixel’s brightness is represented by a single 8-bit number, 
+whose range is from 0 (black) to 255 (white). Nowadays, most of the images have 3
+color channels which is RGB, then each channels no more represents grayscale intensity
+but the related color intensity, eg: channels Red represents the intensity of color red 
+in image. \\
+Because of the way computer or machine seeing the world, Computer Vision have to face 
+many challenges. Therefore, it's not easy to answer what is the challenges in Computer 
+Vision, these difficulties might vary from each to other fields in Computer Vision. 
+The mose comman challenges in CV tasks such as objects under different viewpoints, 
+illuminations, and intraclass variations, etc. \\
+Imagine we are building a Computer Vision system has ability to classify whether 
+the objects in image are cat or not. That a look at a few example in figure \ref{fig:challenge} 
+which can show us what type of difficulties that real life image 
+bright to our model.
+It's clearly that with the same cat, but if we change the camera angle, 
+the system will definitely get another image which is unrelative to any other 
+image that the system has seen.
 
-\subsection{Object Identification}
-What is Object localization? \\
-An approaching methods?
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.9\textwidth]{images/cat_demo.png}
+    \caption{Challenge on first day in Computer Vision }
+    \label{fig:challenge}
+    \source{CS231n Stanford}
+\end{figure}
 
-\subsection{Object Tracking}
-A brief explanation about Object tracking. \\
-An approaching methods?
+\section{WHAT IS OBJECT DETECTION}
+We can not deny that Computer Vision, at the moments, take an important role in many 
+applications. It takes part in many intelligence system that are able to understand and finish
+their task through a process of interpreting the visual world by camera, videos, images, etc.
+As one of the fundamental problems of computer vision, Object Detection form the basic 
+of many other computer vision task, such as instance segmentation, image captioning, 
+object tracking, etc. \\
+Object detection (OD) is a computer technology related image processing that deals 
+with detecting instances of semantic objects of a certain class (such as humans, animals, or cars) 
+in digital images and videos. 
+The objective of object detection is to develop computational models and techniques that provide 
+one of the most basic pieces of information needed by computer vision applications:
+\emph{What objects are where?} \\
+While Object detection is a subfiled of computer vision, OD also face the most basic 
+difficulties in computer vision that we covered in section \ref{sec:challenges}. However, 
+object detection include (but not limited to) the following aspects: object rotation and
+scale changes, accurate object localization, dense and occluded object detection, seed up of detection, etc. \\
+Under the revolution of Deep learning, object detection has achieved many accomplishments.
+Deep learning has lead object detection to remarkable breakthourgh and pushing it forward
+to a research hot-spot with unprecedented attention. The number of publications
+in object detection from 1998 to 2018 has increasing rapidly. \cite{zou2019object}
 
-\subsection{Object Detection's current achivements}
-Some current achivements?
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/number_of_publication.png}
+    \caption{The increasing number of publications in object detection from 1998 to 2018}
+    \label{fig:publication}
+    \source{Object Detection in 20 Years: A survey\cite{zou2019object}}
+\end{figure}
 
 %-------------------------------------------------------------------------------
-% BEFORE DEEP LEARNING
+% A road map
 %-------------------------------------------------------------------------------
 
-\chapter{A Classical Approach of Object Detection}
-Talk about the foundations of modern algorithm in Object Detection nowadays.
+\section{A ROAD MAP OF OBJECT DETECTION}
+\label{sec:roadmap}
+In the past two decades, the scientists widely argeed that object detection has 
+gone through two historical periods: "traditional object detection" (before 2014)
+and "deep learning based detection" (after 2014). 
 
-\newpage
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=1\textwidth]{images/roadmap.png}
+    \caption{
+        A road map of object detection. Milestone detectors in this figure: 
+        VJ Det. \cite{viola2001rapid, viola2004robust}, 
+        HOG Det. \cite{dalal2005histograms}, 
+        DPM \cite{felzenszwalb2008discriminatively, felzenszwalb2010cascade, felzenszwalb2009object}, 
+        RCNN \cite{girshick2014rich}, SPPNet \cite{he2015spatial},
+        Fast RCNN \cite{wang2017fast}, 
+        Faster RCNN \cite{ren2015faster}, 
+        YOLO \cite{redmon2016you}, 
+        SSD \cite{liu2016ssd}, 
+        Pyramid Networks \cite{lin2017feature}, 
+        Retina-Net \cite{lin2017focal}.
+    }
+    \label{fig:roadmap}
+    \source{Object Detection in 20 Years: A survey\cite{zou2019object}}
+\end{figure}
 
-%-------------------------------------------------------------------------------
-% AFTER THE APPERENCE OF CNN AND DEEP LEARNING
-%-------------------------------------------------------------------------------
+\subsection{Traditional Object Detectors}
+\label{sec:tradional}
+Turn back the clock 20 years, we would witness "the wisdom of cold weapon era". Most 
+of the early object detection algorithms were built based on handcrafted features. 
 
-\chapter{Appearance of Convolutional Neural Network (CNN)}
-The evolution in Computer Vision for general and Object Detection for specific.
+\subsubsection{Histogram of Oriented Gradients (HOG) Detector}
+\label{sec:hog}
 
-\newpage
+\subsubsection{Deformable Part-based Model (DPM)}
+\label{sec:dpm}
+
+\subsection{Deep Learning based Detection}
+\label{sec:deep_learning}
+
+\subsubsection{CNN based Two-stage Detectors}
+\label{sec:two_stage}
+
+\subsubsection*{RCNN}
+\subsubsection*{Fast RCNN}
+\subsubsection*{Faster RCNN}
+
+\subsubsection{CNN based One-stage Detectors}
+\label{sec:one_stage}
+
+\subsubsection*{You Only Look Once (YOLO)}
+\subsubsection*{Single Shot MultiBox Detector (SSD)}
 
 %-------------------------------------------------------------------------------
 % DISCUSSION
 %-------------------------------------------------------------------------------
 
-\chapter{Discussion}
-Personal statement about the current trends and future of Object Detection.
+\section{OBJECT DETECTION IN FUTURE}
+\label{sec:future}
+\subsection{Ethical issues in Object Detection}
+\label{sec:ethical}
+% add current ethical issues in OD
+% personal privacy, information security, crimial tracking or citizen tracking?
+% deep fake, bla bla
+\subsection{Object Detection current and future trends}
+\label{sec:trend}
 
-\newpage
-
-\section{Object Detection current trends}
-
-\section{Object Detection in future}
 
 %-------------------------------------------------------------------------------
 % REFERENCES
 %-------------------------------------------------------------------------------
-
+\newpage
 \printbibliography[title=References]
 
 \end{document}
