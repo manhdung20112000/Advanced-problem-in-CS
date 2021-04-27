@@ -359,7 +359,7 @@ body. This was named "star-model" published by P. Felzenszwalb \cite{felzenszwal
 
 \begin{figure}[htp]
     \centering
-    \includegraphics[width=1\textwidth]{images/dpm.png}
+    \includegraphics[width=0.75\textwidth]{images/dpm.png}
     \caption{Root-filter and part-filters of a car in DPM algorithm}
     \label{fig:dpm}
     \source{CS231b Stanford}
@@ -371,37 +371,138 @@ specifying the configurations of the part filters (e.g., size, location), a weak
 learning method is developed in DPM where all configurations of part filters can be 
 learned automatically.
 
-
-
-\subsection{Deep Learning based Detection}
+\subsection{Object Detection based Deep Learning}
 \label{sec:deep_learning}
+The Deep learning evolution have started when AlexNet\cite{krizhevsky2012imagenet} took the first place in 
+ImageNet Large Scale Visual Recognition Challenge (ILSVRC) in 2012. At that time, 
+the convolutional operations was not well known, although, the concept of it's 
+first publish in 1998 by LeCun, one of the "god father" of AI. AlexNet was a 
+mystery or dark magic back there, while the first place of ImageNet 2011 achieved 
+25.8\% in top 5 errors, AlexNet has make only 16.4\% of error, which is approximately 
+a half of last highest score. People said that because of the appearance of AlexNet, the 
+world saw the rebirth of convolutional neural networks. 
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{images/imagenet.png}
+    \caption{An overview of ImageNet in 5 years}
+    \label{fig:imagenet}
+    \source{Kien-Nguyen-23 at researchgate.net}
+\end{figure}
+
+Only 4 years after Krizhevsky, Sutskever, Hinto publish the archtecture of AlexNet\cite{krizhevsky2012imagenet}, 
+the first CNN model, Kaiming He represent ResNet\cite{he2015deep}, a new approach to Deep Learning, 
+achieved only 3.6\% in top 5 error which is higher than human score. The Computer Scientists 
+in general and scientists interested in Object detection started wonder how CNN or Deep Learning 
+can be apply to CV tasks. While the performance of hand-crafted features became saturated, deep convolutional network 
+is able to rebust and high-level feature representations of an image. Since then, object detection
+started to evolve at an unprecedented speed, many efficient models were 
+presented for solving Object Detection such as: R-CNN\cite{girshick2014rich}, 
+YOLO\cite{redmon2016you}, SSD\cite{liu2016ssd}, etc.
 
 \subsubsection{CNN based Two-stage Detectors}
 \label{sec:two_stage}
-
+In deep learning era, object detection can be grouped into two genres: "two stage 
+detection" and "one-stage detection", where the former frames the detection as a 
+"coarse-to-fine" process while the later frames it as to "complete in one step".
+The group of "two stage detection" has R-CNN, Fast R-CNN, Faster R-CNN as 
+distinguished characteristics, however, in this report, I will discuss only about 
+the basic concept of R-CNN family through first R-CNN model.
 \subsubsection*{RCNN}
-\subsubsection*{Fast RCNN}
-\subsubsection*{Faster RCNN}
+The idea behind RCNN is simple: It starts with the extraction of a set of object 
+proposal (object candidate boxes) by selective search. Then each proposal is 
+rescaled to a fixed size image and fed into a CNN model trained on a pretrained model 
+such as: AlexNet, VGG16, etc, to extract features. 
+
+\begin{figure}[!htb]
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=7cm]{images/input.png}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
+        \centering
+        \includegraphics[width=7cm]{images/output.png}
+    \end{minipage}
+    \caption{A Graph Based Image Segmentation}
+    \label{fig:basedsegmentation}
+\end{figure}
+
+Finally, linear SVM classifiers are applied to predict the presence of an object 
+within each region and to recognize object categories. As one of the first model based 
+on Deep Learning, RCNN maked a signicant performance boost on VOC07 with a large 
+improvement of $mAP$ (mean Average Precision) from 33.7\% by DPM \cite{felzenszwalb2008discriminatively}
+to 58.5\%.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=1\textwidth]{images/rcnn.png}
+    \caption{An overview of R-CNN system}
+    \label{fig:rcnn}
+    \source{Rich feature hierarchies for accurate object detection and semantic segmentation \cite{girshick2014rich}}
+\end{figure}
 
 \subsubsection{CNN based One-stage Detectors}
 \label{sec:one_stage}
 
 \subsubsection*{You Only Look Once (YOLO)}
+\label{sec:yolo}
+YOLO was proposed by R. Joseph \emph{et al.} in 2015 \cite{redmon2016you} as the first 
+one-stage detector. The biggest advantage of YOLO than R-CNN that is extremely fast.
+A fast version of YOLO runs at 155fps with VOC07 $mAP=52.7\%$. 
+YOLO is based on the idea of segmenting an image into smaller images. 
+This network divides the image into regions and predicts bounding boxes and 
+probabilities for each region (figure \ref{fig:yolo}). These bounding boxes are weighted by the predicted 
+probabilities. Later, R. Joseph has made a series of improvements on basis of YOLO 
+and has proposed its v2 and v3 editions \cite{redmon2016yolo9000, redmon2018yolov3}, 
+which improve the detection accuracy while keeps a very high detection speed.
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.6\textwidth]{images/yolo.png}
+    \caption{YOLO model}
+    \label{fig:yolo}
+    \source{You Only Look Once \cite{redmon2016you}}
+\end{figure}
+
 \subsubsection*{Single Shot MultiBox Detector (SSD)}
+\label{sec:ssd}
+As the second one-stage detector, SSD \cite{liu2016ssd} was proposed by W. Liu 
+\emph{et al.} in 2015. The model discretizes the output space of bounding boxes 
+into a set of default boxes over different aspect ratios and scales per feature 
+map location. At prediction time, the network generates scores for the presence 
+of each object category in each default box and produces adjustments to the box 
+to better match the object shape. Additionally, the network combines predictions 
+from multiple feature maps with different resolutions to naturally handle objects 
+of various sizes. 
+
+The main contribution of SSD is the introduction of the multi-reference and 
+multi-resolution detection techniques, which significantly improves the detection 
+accuracy of a one-stage detector, especially for small objects which is the original 
+YOLO weakness. SSD jas asdvamtages om terms of both detection speed and accuracy 
+(VOC07 mAP=76.8\%, VOC12 mAP=74.9\%, COCO mAP@.5=46.5\%, mAP@.5:.95=26.8\%, a fast 
+version runs at 59fps).
+
+\begin{figure}[htp]
+    \centering
+    \includegraphics[width=0.7\textwidth]{images/ssd.png}
+    \caption{Architecture of a convolutional neural network with a SSD detector}
+    \label{fig:ssd}
+    \source{SSD: Single shot multibox detector \cite{liu2016ssd}}
+\end{figure}
 
 %-------------------------------------------------------------------------------
 % DISCUSSION
 %-------------------------------------------------------------------------------
 
-\section{OBJECT DETECTION IN FUTURE}
-\label{sec:future}
-\subsection{Ethical issues in Object Detection}
-\label{sec:ethical}
-% add current ethical issues in OD
-% personal privacy, information security, crimial tracking or citizen tracking?
-% deep fake, bla bla
-\subsection{Object Detection current and future trends}
-\label{sec:trend}
+% \section{OBJECT DETECTION IN FUTURE}
+% \label{sec:future}
+% \subsection{Ethical issues in Object Detection}
+% \label{sec:ethical}
+% % add current ethical issues in OD
+% % personal privacy, information security, crimial tracking or citizen tracking?
+% % deep fake, bla bla
+% \subsection{Object Detection future trends}
+% \label{sec:trend}
 
 
 %-------------------------------------------------------------------------------
